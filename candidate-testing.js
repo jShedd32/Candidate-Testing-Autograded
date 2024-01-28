@@ -18,26 +18,39 @@ let candidateAnswers = [];
 
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
-  candidateName = input.question("What is your name? ")
+  candidateName = input.question("What is your name? ") //asks candidate their name and stores it in candidateName string//
 };
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  for (i = 0; i < questions.length; i++){
-    candidateAnswers.push( input.question(questions[i]));
+  for (i = 0; i < questions.length; i++){        //loops through questions array one at a time at index [i]//
+    candidateAnswers.push( input.question(questions[i]));   // pushes candidates answers to candidateAnswers array when asked question at index [i]//
 }
 };
 
 
 function gradeQuiz(candidateAnswers) {
+  let numCorrect = 0
+  for (let i = 0; i < candidateAnswers.length; i++){
+    if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()){ //compares candidateAnswers array with the correct answers array at index[i]
+      numCorrect ++ //gives us the number of correct answers for grading
+    }
+  }
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   console.log(`You answered ${candidateAnswers} , and the correct answers are ${correctAnswers}.`)
 
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
+  let grade = ( numCorrect / questions.length * 100);  //TODO 3.2 use this variable to calculate the candidates score.
+ 
+  if (grade >= 80){
+  console.log("Congratulations, you have met the requirments to pass your candidate testing!")
+ } 
+  else {
+  console.log("Sorry, you have not met the requirements to pass your candidate testing.")
+ }
 
   return grade;
+
 }
 
 function runProgram() {
